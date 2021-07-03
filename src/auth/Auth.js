@@ -1,34 +1,15 @@
-import client from '../skynet/skynetClient';
-import isLocalhost from '../skynet/isLocalhost';
-
-const DOMAIN = '0xd49'
+const LOCALSTORAGE_ENTRY = 'seed'
 
 const Auth = {
-  isAuthenticated: false,
-  signin (cb) {
-    Auth.isAuthenticated = true
-    setTimeout(cb, 100) // fake async
+  get isAuthenticated () {
+    return !!window.localStorage.getItem(LOCALSTORAGE_ENTRY)
   },
-  signout (cb) {
-    Auth.isAuthenticated = false
-    setTimeout(cb, 100)
+  signin (seed) {
+    window.localStorage.setItem(LOCALSTORAGE_ENTRY, seed)
   },
-  async init () {
-    try {
-      const mySky = await client.loadMySky(DOMAIN, { dev: isLocalhost })
-      const loggedIn = await mySky.checkLogin()
-
-      setMySky(mySky)
-      setLoggedIn(loggedIn)
-
-      if (loggedIn) {
-        setUserId(await mySky.userID())
-      }
-    } catch (e) {
-      console.error(e)
-    }
+  signout () {
+    window.localStorage.removeItem(LOCALSTORAGE_ENTRY)
   }
-
 }
 
 export default Auth

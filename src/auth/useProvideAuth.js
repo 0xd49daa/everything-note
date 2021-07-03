@@ -2,24 +2,20 @@ import { useState } from 'react'
 import Auth from './Auth'
 
 function useProvideAuth () {
-  const [user, setUser] = useState(null)
+  const [logged, setLogged] = useState(Auth.isAuthenticated)
 
-  const signin = cb => {
-    return Auth.signin(() => {
-      setUser('user')
-      cb()
-    })
+  const signin = seed => {
+    Auth.signin(seed)
+    setLogged(true)
   }
 
   const signout = cb => {
-    return Auth.signout(() => {
-      setUser(null)
-      cb()
-    })
+    Auth.signout()
+    setLogged(false)
   }
 
   return {
-    user,
+    logged,
     signin,
     signout
   }

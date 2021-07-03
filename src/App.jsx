@@ -12,16 +12,7 @@ function App () {
     <ProvideAuth>
       <Router>
         <div>
-          <AuthButton />
-          <ul>
-            <li>
-              <Link to='/public'>Public Page</Link>
-            </li>
-            <li>
-              <Link to='/protected'>Protected Page</Link>
-            </li>
-          </ul>
-
+          {/* <Login /> */}
           <Switch>
             <Route path='/public'>
               <PublicPage />
@@ -32,6 +23,9 @@ function App () {
             <PrivateRoute path='/protected'>
               <ProtectedPage />
             </PrivateRoute>
+            <Route path='/'>
+              <Login />
+            </Route>
           </Switch>
         </div>
       </Router>

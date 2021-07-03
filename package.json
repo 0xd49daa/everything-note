@@ -10,6 +10,10 @@
     "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test"
   },
   "dependencies": {
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
+    "@material-ui/core": "^5.0.0-beta.0",
+    "@material-ui/styles": "^4.11.4",
     "@skynetlabs/content-record-library": "^0.5.0",
     "dexie": "^3.0.3",
     "dexie-observable": "^3.0.0-beta.11",
