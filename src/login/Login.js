@@ -67,7 +67,7 @@ export default function SimpleContainer () {
 
   useEffect(() => {
     if (logged) {
-      history.push('/protected')
+      history.push('/app')
     }
   }, [logged])
 
