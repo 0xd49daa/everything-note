@@ -1,9 +1,13 @@
-import React, { useCallback, useState } from 'react'
-import Card from '@material-ui/core/Card'
-import Modal from '@material-ui/core/Modal'
+import React, { useCallback, useContext, useRef } from 'react'
 import { makeStyles } from '@material-ui/styles'
-import classnames from 'classnames'
 import Dialog from '@material-ui/core/Dialog'
+import CardView from './CardView'
+import DialogView from './DialogView'
+import PropTypes from 'prop-types'
+import db from '../dexie/db'
+import MainViewContext from '../main/MainViewContext'
+import { ACTIONS, VARS } from '../main/reducer/reducer'
+import NoteModel from '../main/NoteModel'
 
 const useStyles = makeStyles(() => ({
   modal: {
@@ -26,30 +30,43 @@ const useStyles = makeStyles(() => ({
 }))
 
 function Note (props) {
+  const originalId = useRef(props.id)
   const classes = useStyles()
 
-  const [open, setOpen] = useState(false)
+  const [state, dispatch] = useContext(MainViewContext)
+
+  const open = state[VARS.OPEN_ITEM] === props.id
 
   const handleClick = useCallback(() => {
     if (!open) {
-      setOpen(true)
+      dispatch({ type: ACTIONS.SET_OPEN_ITEM, value: props.id })
     }
   }, [open])
 
   const handleClose = useCallback(() => {
-    setOpen(false)
+    dispatch({ type: ACTIONS.SET_OPEN_ITEM, value: null })
   }, [])
 
-  const card = <Card onClick={handleClick} classes={{ root: classnames(classes.card, { open }) }}>
-    mainview {props.id}
-  </Card>
+  const handleOnChange = useCallback(async (content) => {
+    await NoteModel.update(originalId.current, content)
+  }, [])
 
   return <>
-    {card}
-    {open && <Dialog classes={{ root: classes.modal }} open onClose={handleClose} transitionDuration={{ enter: 1000, exit: 1000 }}>
-      {card}
+    <CardView onClick={handleClick} open={open} content={props.content} />
+    {open && <Dialog
+      classes={{ root: classes.modal }} open onClose={handleClose} transitionDuration={{
+        enter: 1000,
+        exit: 1000
+      }}
+    >
+      <DialogView content={props.content} onChange={handleOnChange} />
     </Dialog>}
   </>
+}
+
+Note.propTypes = {
+  content: PropTypes.string,
+  id: PropTypes.string
 }
 
 export default Note
