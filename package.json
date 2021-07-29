@@ -18,6 +18,7 @@
     "@skynetlabs/content-record-library": "^0.5.0",
     "classnames": "^2.3.1",
     "dexie": "^v3.2.0-beta.1",
+    "dexie-observable": "^3.0.0-beta.11",
     "dexie-react-hooks": "^1.0.7",
     "dexie-syncable": "^3.0.0-beta.10",
     "draft-js": "^0.11.7",
@@ -27,6 +28,7 @@
     "react-dom": "^16",
     "react-hot-loader": "^4",
     "react-router-dom": "^5.2.0",
+    "short-unique-id": "^4.3.3",
     "skynet-js": "^4.0.9-beta"
   },
   "devDependencies": {

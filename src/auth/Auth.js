@@ -1,6 +1,9 @@
-const LOCALSTORAGE_ENTRY = 'seed'
+export const LOCALSTORAGE_ENTRY = 'seed'
 
 const Auth = {
+  get seed () {
+    return window.localStorage.getItem(LOCALSTORAGE_ENTRY)
+  },
   get isAuthenticated () {
     return !!window.localStorage.getItem(LOCALSTORAGE_ENTRY)
   },

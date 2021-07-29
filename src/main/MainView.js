@@ -25,11 +25,7 @@ function MainView () {
       .reverse()
       .limit(20)
       .toArray()
-  )
-
-  if (!notes) {
-    return null
-  }
+  ) || []
 
   return (
     <MainViewContext.Provider value={contextValue}>

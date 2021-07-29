@@ -1,4 +1,7 @@
 import db from '../dexie/db'
+import ShortUniqueId from 'short-unique-id'
+
+const uid = new ShortUniqueId()
 
 export default class NoteModel {
   static async add () {
