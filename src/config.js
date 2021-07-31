@@ -1,1 +1,1 @@
-export const DB_NAME = 'skynotes'
+export const DB_NAME = 'everything-note'

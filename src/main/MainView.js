@@ -30,7 +30,9 @@ function MainView () {
 
   useEffect(() => {
     db.syncable.connect('skynet', 'https://siasky.net', {
-      seed: Auth.seed
+      seed: Auth.seed,
+      poolInterval: 10000,
+      rootItem: 'everything-note'
     })
   }, [])
 
