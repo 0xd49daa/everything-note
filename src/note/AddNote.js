@@ -19,12 +19,7 @@ function AddNote (props) {
   const [state, dispatch] = useContext(MainViewContext)
 
   const handleClick = useCallback(async () => {
-    console.log('click')
-
     const id = await NoteModel.add()
-
-    console.log('id', id)
-
     dispatch({ type: ACTIONS.SET_OPEN_ITEM, value: id })
   }, [])
 
@@ -34,8 +29,6 @@ function AddNote (props) {
 }
 
 AddNote.propTypes = {
-  content: PropTypes.string,
-  id: PropTypes.string
 }
 
 export default AddNote

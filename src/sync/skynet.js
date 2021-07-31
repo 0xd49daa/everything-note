@@ -23,8 +23,6 @@ Dexie.Syncable.registerSyncProtocol('skynet', {
     const client = new SkynetClient(url)
     const { publicKey, privateKey } = genKeyPairFromSeed(options.seed)
 
-    console.log('baseRevision', baseRevision, 'syncedRevision', syncedRevision)
-
     let currentRevision = syncedRevision
     let nextRevision
 
@@ -38,26 +36,18 @@ Dexie.Syncable.registerSyncProtocol('skynet', {
       nextRevision = response.nextRevision
 
       if (currentRevision !== syncedRevision) {
-        console.log('apply changes', response.changes, currentRevision)
         applyRemoteChanges(response.changes, currentRevision, false, false)
       }
 
       currentRevision = nextRevision
     }
 
-    console.log('nextRevision', nextRevision)
-
     if (changes.length > 0) {
       const nextNextRevision = uid()
-      console.log('write changes', {
-        nextRevision: nextNextRevision,
-        changes
-      })
       await client.db.setJSON(privateKey, nextRevision, {
         nextRevision: nextNextRevision,
         changes
       })
-      console.log('apply changes', [], currentRevision)
       applyRemoteChanges([], nextRevision, false, false)
     }
 

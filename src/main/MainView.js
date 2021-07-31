@@ -1,4 +1,4 @@
-import React, { useReducer, useMemo } from 'react'
+import React, { useReducer, useMemo, useEffect } from 'react'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/styles'
 import Note from './../note/Note'
@@ -7,6 +7,7 @@ import db from '../dexie/db'
 import AddNote from '../note/AddNote'
 import reducer, { INITIAL_STATE } from './reducer/reducer'
 import MainViewContext from './MainViewContext'
+import Auth, { LOCALSTORAGE_ENTRY } from '../auth/Auth'
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -26,6 +27,12 @@ function MainView () {
       .limit(20)
       .toArray()
   ) || []
+
+  useEffect(() => {
+    db.syncable.connect('skynet', 'https://siasky.net', {
+      seed: Auth.seed
+    })
+  }, [])
 
   return (
     <MainViewContext.Provider value={contextValue}>
