@@ -1,6 +1,7 @@
 import { Redirect, Route } from 'react-router-dom'
 import React from 'react'
 import useAuth from './useAuth'
+import PropTypes from 'prop-types'
 
 function PrivateRoute ({ children, ...rest }) {
   const auth = useAuth()
@@ -21,6 +22,10 @@ function PrivateRoute ({ children, ...rest }) {
         )}
     />
   )
+}
+
+PrivateRoute.propTypes = {
+  children: PropTypes.node
 }
 
 export default PrivateRoute

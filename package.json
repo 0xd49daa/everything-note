@@ -35,7 +35,7 @@
     "@neutrinojs/jest": "^9.5.0",
     "@neutrinojs/react": "^9.5.0",
     "@neutrinojs/standardjs": "^9.5.0",
-    "eslint": "^7",
+    "eslint": "^7.32.0",
     "jest": "^26",
     "neutrino": "^9.5.0",
     "webpack": "^4",

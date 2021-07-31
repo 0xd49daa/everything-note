@@ -1,4 +1,4 @@
-import React, { useReducer, useMemo, useEffect } from 'react'
+import React, { useEffect, useMemo, useReducer } from 'react'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/styles'
 import Note from './../note/Note'
@@ -7,7 +7,7 @@ import db from '../dexie/db'
 import AddNote from '../note/AddNote'
 import reducer, { INITIAL_STATE } from './reducer/reducer'
 import MainViewContext from './MainViewContext'
-import Auth, { LOCALSTORAGE_ENTRY } from '../auth/Auth'
+import Auth from '../auth/Auth'
 
 const useStyles = makeStyles(() => ({
   container: {

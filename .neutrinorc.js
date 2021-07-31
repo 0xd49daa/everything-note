@@ -7,7 +7,7 @@ module.exports = {
     root: __dirname,
   },
   use: [
-    standard(),
+    process.env.NODE_ENV === 'development' ? standard() : false,
     react({
       html: {
         title: 'neutrino'
