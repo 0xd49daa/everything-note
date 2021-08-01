@@ -1,6 +1,6 @@
 # Everything Note
 
-Decentralized web application to store your notes. Based on [Sia Skynet](https://siasky.net/)
+Decentralized web application to store your notes. Based on [Sia Skynet](https://siasky.net/) and [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) (via [Dexie](https://dexie.org/))
 
 [DEMO](https://0xd49.hns.siasky.net/)
 

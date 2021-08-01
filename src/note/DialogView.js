@@ -11,7 +11,8 @@ const useStyles = makeStyles(() => ({
     outline: 'none',
     margin: '20px',
     display: 'inline-block',
-    width: '250px'
+    width: '250px',
+    minHeight: '100px'
   }
 }))
 

@@ -1,6 +1,7 @@
 const standard = require('@neutrinojs/standardjs');
 const react = require('@neutrinojs/react');
 const jest = require('@neutrinojs/jest');
+const storybook = require('neutrino-preset-storybook-react')
 
 module.exports = {
   options: {
@@ -13,6 +14,7 @@ module.exports = {
         title: 'Everything Note - Skynet App'
       }
     }),
+    storybook(),
     jest(),
   ],
 };

@@ -11,4 +11,10 @@ db.version(1).stores({
   notes: '$$id, content, createdAt, modifiedAt'
 })
 
+db.version(2).stores({
+  notes: '$$id, content, createdAt, modifiedAt',
+  tags: '$$id, tag',
+  noteTags: '$$id, noteId, tagId',
+})
+
 export default db

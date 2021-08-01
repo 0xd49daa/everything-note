@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useReducer } from 'react'
+import React, { useEffect } from 'react'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/styles'
 import Note from './../note/Note'
@@ -6,8 +6,8 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import db from '../dexie/db'
 import AddNote from '../note/AddNote'
 import reducer, { INITIAL_STATE } from './reducer/reducer'
-import MainViewContext from './MainViewContext'
 import Auth from '../auth/Auth'
+import withReducer from './reducer/withReducer'
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -16,9 +16,6 @@ const useStyles = makeStyles(() => ({
 
 function MainView () {
   const classes = useStyles()
-  const [state, dispatch] = useReducer(reducer, INITIAL_STATE)
-
-  const contextValue = useMemo(() => [state, dispatch], [state, dispatch])
 
   const notes = useLiveQuery(
     () => db.notes
@@ -37,7 +34,6 @@ function MainView () {
   }, [])
 
   return (
-    <MainViewContext.Provider value={contextValue}>
       <Container>
         <div className={classes.container}>
           <AddNote />
@@ -46,8 +42,7 @@ function MainView () {
           })}
         </div>
       </Container>
-    </MainViewContext.Provider>
   )
 }
 
-export default MainView
+export default withReducer(reducer, INITIAL_STATE)(MainView)
